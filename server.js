@@ -7,32 +7,24 @@ const server = http.createServer(app);
 const io = socketIo(server);
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-    res.send('Signaling Server is running.');
-});
+// Serve static files from the public directory
+app.use(express.static('public'));
 
-io.on('connection', socket => {
+io.on('connection', (socket) => {
     console.log('A user connected.');
 
-    // Handle offer from client
-    socket.on('offer', offer => {
-        // Broadcast offer to all other connected clients
+    socket.on('offer', (offer) => {
         socket.broadcast.emit('offer', offer);
     });
 
-    // Handle answer from client
-    socket.on('answer', answer => {
-        // Broadcast answer to all other connected clients
+    socket.on('answer', (answer) => {
         socket.broadcast.emit('answer', answer);
     });
 
-    // Handle ICE candidate from client
-    socket.on('ice-candidate', candidate => {
-        // Broadcast ICE candidate to all other connected clients
+    socket.on('ice-candidate', (candidate) => {
         socket.broadcast.emit('ice-candidate', candidate);
     });
 
-    // Handle disconnection
     socket.on('disconnect', () => {
         console.log('A user disconnected.');
     });
@@ -41,3 +33,18 @@ io.on('connection', socket => {
 server.listen(PORT, () => {
     console.log(`Signaling Server is running on port ${PORT}`);
 });
+io.on('connection', (socket) => {
+    console.log('A user connected.');
+
+    socket.on('chat-message', (message) => {
+        // Broadcast the chat message to other clients in the same call
+        socket.broadcast.emit('chat-message', message);
+    });
+
+    // Other event handlers...
+
+    socket.on('disconnect', () => {
+        console.log('A user disconnected.');
+    });
+});
+
