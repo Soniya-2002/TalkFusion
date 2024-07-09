@@ -1,3 +1,79 @@
+import java.util.Scanner;
+
+public class BroadbandBillCalculator {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get customer input
+        System.out.print("Enter your plan code (P10Mbps, P20Mbps, P30Mbps): ");
+        String planCode = scanner.nextLine().trim();
+        System.out.print("Enter total data used in MB: ");
+        int dataUsed = scanner.nextInt();
+
+        // Variables for calculations
+        int monthlyRental = 0;
+        int totalDataLimit = 0;
+        double extraChargeRate = 0;
+        double discount = 0;
+        double extraCharge = 0;
+        double billAmount = 0;
+
+        // Determine plan details
+        switch (planCode) {
+            case "P10Mbps":
+                monthlyRental = 4500;
+                totalDataLimit = 6000;
+                extraChargeRate = 50.9;
+                if (dataUsed >= 100 && dataUsed <= 500) {
+                    discount = 199.9;
+                }
+                if (dataUsed > 6000 && dataUsed <= 8000) {
+                    extraCharge = extraChargeRate;
+                }
+                break;
+            case "P20Mbps":
+                monthlyRental = 7500;
+                totalDataLimit = 5000;
+                extraChargeRate = 299.9;
+                if (dataUsed >= 50 && dataUsed <= 100) {
+                    discount = 399.9;
+                }
+                if (dataUsed > 5000 && dataUsed <= 7000) {
+                    extraCharge = extraChargeRate;
+                }
+                break;
+            case "P30Mbps":
+                monthlyRental = 1200;
+                totalDataLimit = 4000;
+                extraChargeRate = 399.9;
+                if (dataUsed >= 50 && dataUsed <= 100) {
+                    discount = 555.5;
+                }
+                if (dataUsed > 4000 && dataUsed <= 6000) {
+                    extraCharge = extraChargeRate;
+                }
+                break;
+            default:
+                System.out.println("Invalid plan code.");
+                scanner.close();
+                return;
+        }
+
+        // Calculate the total bill amount
+        billAmount = monthlyRental + extraCharge - discount;
+
+        // Display the results
+        System.out.println("Plan Code: " + planCode);
+        System.out.println("Total Data Used: " + dataUsed + " MB");
+        System.out.println("Monthly Rental: " + monthlyRental + " Rs");
+        System.out.println("Extra Charge: " + extraCharge + " Rs");
+        System.out.println("Discount: " + discount + " Rs");
+        System.out.println("Total Bill Amount: " + billAmount + " Rs");
+
+        scanner.close();
+    }
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
