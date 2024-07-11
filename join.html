@@ -1,4 +1,33 @@
 
+-- Inserting sample data into CUSTOMER table
+INSERT INTO CUSTOMER (CUST_ID, FIRST_NAME, MID_NAME, LAST_NAME, CITY, MOBILENO, OCCUPATION, CUST_DOB)
+VALUES
+(1, 'John', 'Doe', 'Smith', 'New York', '1234567890', 'Engineer', '1990-05-15'),
+(2, 'Jane', '', 'Doe', 'Los Angeles', '9876543210', 'Teacher', '1988-10-20');
+
+-- Inserting sample data into BRANCH table
+INSERT INTO BRANCH (BRANCH_ID, BRANCH_NAME, BRANCH_CITY)
+VALUES
+(1, 'Main Branch', 'New York'),
+(2, 'Downtown Branch', 'Los Angeles');
+
+-- Inserting sample data into ACCOUNT table
+INSERT INTO ACCOUNT (AC_NUMBER, CUST_ID, BRANCH_ID, OPEN_BALANCE, ACC_OPEN_DATE, AC_TYPE, AC_STATUS)
+VALUES
+(1001, 1, 1, 5000.00, '2023-01-15', 'Savings', 'Active'),
+(1002, 2, 2, 7000.00, '2022-05-20', 'Current', 'Active');
+
+-- Inserting sample data into LOAN table
+INSERT INTO LOAN (LOAN_ID, CUST_ID, BRANCH_ID, LOAN_AMOUNT)
+VALUES
+(5001, 1, 1, 10000.00),
+(5002, 2, 2, 8000.00);
+
+-- Inserting sample data into TRANSACTION table
+INSERT INTO TRANSACTION (TRAN_NUMBER, AC_NUMBER, TRAN_DATE, TRAN_DETAILS, TRAN_TYPE, TRAN_AMOUNT)
+VALUES
+(20001, 1001, '2023-02-10', 'Deposit', 'Credit', 1000.00),
+(20002, 1002, '2022-06-05', 'Withdrawal', 'Debit', 500.00);
 import java.util.Scanner;
 
 public class OddEvenCheck {
