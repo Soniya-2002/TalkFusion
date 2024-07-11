@@ -1,3 +1,35 @@
+
+import java.util.Scanner;
+
+public class OddEvenCheck {
+
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter a number
+        System.out.print("Enter a number: ");
+        
+        try {
+            // Read the number from the user
+            int number = scanner.nextInt();
+
+            // Check if the number is odd or even
+            if (number % 2 == 0) {
+                System.out.println("The number " + number + " is even.");
+            } else {
+                System.out.println("The number " + number + " is odd.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number. Please provide a valid integer.");
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+}
 public class OverloadingTest {
     
     // Method to add two integers
