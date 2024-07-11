@@ -1,3 +1,90 @@
+public class OverloadingTest {
+    
+    // Method to add two integers
+    public int getResult(int a, int b) {
+        return a + b;
+    }
+
+    // Method to add an integer and a float
+    public int getResult(int a, float b) {
+        return a + (int) b; // Cast float to int before addition
+    }
+
+    // Method to add a float and a double
+    public int getResult(float a, double b) {
+        return (int) (a + b); // Cast the result to int
+    }
+
+    public static void main(String[] args) {
+        OverloadingTest test = new OverloadingTest();
+
+        // Calling the method getResult(float a, double b)
+        float a = 5.5f;
+        double b = 10.3;
+        int result = test.getResult(a, b);
+
+        // Printing the result
+        System.out.println("The result of adding " + a + " and " + b + " is: " + result);
+    }
+}
+
+public class OddEvenCheck {
+
+    public static void main(String[] args) {
+        // Check if an argument is provided
+        if (args.length == 0) {
+            System.out.println("Please provide a number as a command line argument.");
+            return;
+        }
+
+        try {
+            // Parse the command line argument to an integer
+            int number = Integer.parseInt(args[0]);
+
+            // Check if the number is odd or even
+            if (number % 2 == 0) {
+                System.out.println("The number " + number + " is even.");
+            } else {
+                System.out.println("The number " + number + " is odd.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number. Please provide a valid integer.");
+        }
+    }
+}
+
+import java.util.Scanner;
+
+public class CharacterCounter {
+
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter a name
+        System.out.print("Enter a name: ");
+        String name = scanner.nextLine();
+
+        // Get the length of the name
+        int length = name.length();
+
+        // Display the count of characters
+        System.out.println("The name is " + length + " characters long.");
+
+        // Check if the name has at least 3 characters
+        if (length >= 3) {
+            // Display the third character
+            char thirdCharacter = name.charAt(2);
+            System.out.println("The third character is: " + thirdCharacter);
+        } else {
+            System.out.println("The name is too short to have a third character.");
+        }
+
+        // Close the scanner
+        scanner.close();
+    }
+}
+
 import java.util.Scanner;
 
 public class BroadbandBillCalculator {
